@@ -2,9 +2,9 @@ FROM openjdk:17-jdk
 
 WORKDIR /app
 
-COPY backend-project/microservices/config-service/target/config-service-0.0.1-SNAPSHOT.jar /app/config-service.jar
+COPY backend-project/microservices/gateway/target/gateway-0.0.1-SNAPSHOT.jar /app/gateway.jar
 
-EXPOSE 9090
+EXPOSE 8080
 
-CMD [ "java", "-jar", "config-service.jar" ]
+CMD [ "java", "-jar", "gateway.jar" ]
 
