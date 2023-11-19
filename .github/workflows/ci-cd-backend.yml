@@ -20,11 +20,38 @@ jobs:
           java-version: 17
           
       - name: Unit tests
-        run: mvn -B test --file backend-project/microservices/pom.xml
+        run: |
+          mvn -B test --file backend-project/microservices/pom.xml
+          mvn -B test --file backend-project/microservices/eureka-discovery-service/pom.xml
+          mvn -B test --file backend-project/microservices/config-service/pom.xml
+          mvn -B test --file backend-project/microservices/gateway/pom.xml
+          mvn -B test --file backend-project/microservices/customer-service/pom.xml
+          mvn -B test --file backend-project/microservices/inventory-service/pom.xml
+          mvn -B test --file backend-project/microservices/billing-service/pom.xml
+
 
       - name: Build the application
         run: |
           cd backend-project/microservices/
           mvn clean 
           mvn -B package --file pom.xml
+          cd eureka-discovery-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../config-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../gateway/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../customer-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../inventory-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../billing-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+
           
