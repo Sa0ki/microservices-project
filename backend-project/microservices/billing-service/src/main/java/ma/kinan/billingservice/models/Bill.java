@@ -24,5 +24,6 @@ public class Bill {
     private Long customerId;
     @Transient
     private Customer customer;
+    private Double total;
 
 }

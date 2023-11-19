@@ -33,6 +33,12 @@ public class BillingServiceApplication {
             List<Customer> customers = customerRepository.getAllCustomers().getContent().stream().toList();
 
             customers.forEach(customer -> {
+                int maxBills = 0;
+                if (Math.random() < 0.4)
+                    maxBills = (int)(Math.random() * 5) + 1;
+                else
+                    maxBills = (int)(Math.random() * 3 + 1);
+                for(int j = 0; j < maxBills; j ++){
                 Bill bill = new Bill();
                 bill.setCustomer(customer);
                 bill.setCustomerId(customer.getId());
@@ -48,7 +54,7 @@ public class BillingServiceApplication {
                     ProductItem productItem = ProductItem.builder()
                             .productId(products.get(i).getId())
                             .product(products.get(i))
-                            .quantityItem((int) (Math.random() * products.get(i).getQuantity()))
+                            .quantityItem((int) (Math.random() * products.get(i).getQuantity() + 1))
                             .bill(billSaved)
                             .build();
                     productItems.add(productItem);
@@ -56,6 +62,7 @@ public class BillingServiceApplication {
                 List<ProductItem> productItemsSaved = productItemRepository.saveAll(productItems);
                 billSaved.setProductItems(productItemsSaved);
                 billRepository.save(billSaved);
+            }
             });
         };
     }
