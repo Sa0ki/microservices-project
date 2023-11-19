@@ -34,7 +34,10 @@ jobs:
           cd backend-project/microservices/
           mvn clean 
           mvn -B package --file pom.xml
-          cd config-service/
+          cd eureka-discovery-service
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../config-service/
           mvn clean 
           mvn -B package --file pom.xml
           cd ../gateway/
