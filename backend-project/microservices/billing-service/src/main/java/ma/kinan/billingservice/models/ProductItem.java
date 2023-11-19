@@ -1,5 +1,6 @@
 package ma.kinan.billingservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ public class ProductItem {
     @Transient
     private Product product;
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Bill bill;
 
 }

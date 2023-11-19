@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface InventoryRepository {
     @GetMapping("products?projection=fullProduct")
     PagedModel<Product> getAllProducts();
-    @GetMapping("products/{id]?projection=fullProduct")
+    @GetMapping("products/{id}?projection=fullProduct")
     Product getProductById(@PathVariable Long id);
 }

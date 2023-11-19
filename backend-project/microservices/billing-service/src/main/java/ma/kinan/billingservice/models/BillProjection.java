@@ -14,5 +14,4 @@ public interface BillProjection {
     Date getbillingDate();
     Long getCustomerId();
     List<ProductItem> getProductItems();
-
 }
