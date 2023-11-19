@@ -20,10 +20,10 @@ jobs:
           java-version: 17
           
       - name: Unit tests
-        run: mvn -B test --file pom.xml
+        run: mvn -B test --file backend-project/microservices/pom.xml
 
       - name: Build the application
         run: |
           mvn clean
-          mvn -B package --file pom.xml
+          mvn -B package --file backend-project/microservices/pom.xml
           
