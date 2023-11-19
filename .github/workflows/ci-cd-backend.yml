@@ -23,6 +23,7 @@ jobs:
         run: |
           mvn -B test --file backend-project/microservices/pom.xml
           mvn -B test --file backend-project/microservices/config-service/pom.xml
+          mvn -B test --file backend-project/microservices/customer-service/pom.xml
 
 
       - name: Build the application
@@ -31,6 +32,9 @@ jobs:
           mvn clean 
           mvn -B package --file pom.xml
           cd config-service/
+          mvn clean 
+          mvn -B package --file pom.xml
+          cd ../customer-service/
           mvn clean 
           mvn -B package --file pom.xml
 
