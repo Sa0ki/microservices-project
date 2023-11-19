@@ -2,7 +2,7 @@
   <table class="table" *ngIf="bills">
     <thead>
     <tr>
-      <th>ID</th><th>Billing date</th><th>Customer ID</th><th>Customer's full name</th><th>Total</th><th>Details</th>
+      <th>ID</th><th>Billing date</th><th>Customer ID</th><th>Customer's full name</th><th>Total</th>
     </tr>
     </thead>
     <tbody>
@@ -12,26 +12,8 @@
       <td>{{b?.customerId}}</td>
       <td>{{b.customer.firstName}} {{b.customer.lastName}}</td>
       <td>{{b.total | number: ".2"}}</td>
-      <td>
-        <table class="table table-secondary" *ngIf="bills">
-          <thead>
-          <tr>
-            <th>Product ID</th><th>Name</th><th>Price</th><th>Quantity</th><th>Total</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let pi of b.productItems">
-            <td>{{pi?.id}}</td>
-            <td>{{pi?.product.name}}</td>
-            <td>{{pi?.product.price}}</td>
-            <td>{{pi?.quantityItem}}</td>
-            <td>{{ (pi ? (pi.product.price * pi.quantityItem) : '')| number: ".2" }}</td>
-          </tr>
-          </tbody>
-        </table>
-      </td>
+      <td><button class="btn btn-sm btn-primary" (click)="getBillDetails(b)">Details</button></td>
     </tr>
-
     </tbody>
   </table>
 </div>

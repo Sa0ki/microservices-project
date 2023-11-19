@@ -10,14 +10,22 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 export class BillsComponent implements OnInit{
   bills: any;
   customerId!: number
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) {
     this.customerId = activatedRoute.snapshot.params["customerId"];
-    console.log(this.customerId)
   }
   ngOnInit(): void {
-    this.http.get("http://localhost:8080/BILLING-SERVICE/bills/" + this.customerId).subscribe({
+    if(this.customerId)
+    this.http.get("http://localhost:8080/BILLING-SERVICE/bills/customer/" + this.customerId).subscribe({
       next: (data)=>{this.bills = data;},
       error: (err)=>{}
     })
+    else
+      this.http.get("http://localhost:8080/BILLING-SERVICE/bills").subscribe({
+        next: (data)=>{this.bills = data;},
+        error: (err)=>{}
+      })
+  }
+  getBillDetails(bill: any){
+    this.router.navigateByUrl("/bills/" + bill.id)
   }
 }
