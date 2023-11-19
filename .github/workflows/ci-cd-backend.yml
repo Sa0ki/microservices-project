@@ -69,9 +69,9 @@ jobs:
       - name: Push to Docker Hub
         uses: actions/build-push-action@v2
         with:
-        context: .
-        dockerfile: Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/microservices-project:$(date-'%Y-%m-%d%H-%M-%S')
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservices-project:$(date-'%Y-%m-%d%H-%M-%S')
 
           
