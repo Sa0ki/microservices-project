@@ -43,6 +43,20 @@ public class BillController {
         return bills;
     }
     @GetMapping("bills/{id}")
+    public Bill getBillById(@PathVariable Long id){
+        Bill bill = billRepository.findById(id).get();
+        Double total = 0D;
+        for(ProductItem pi: bill.getProductItems()){
+            Product product = inventoryRepository.getProductById(pi.getProductId());
+            pi.setProduct(product);
+            total += pi.getQuantityItem() * product.getPrice();
+        };
+        Customer customer = customerRepository.getCustomerById(bill.getCustomerId());
+        bill.setCustomer(customer);
+        bill.setTotal(total);
+        return bill;
+    }
+    @GetMapping("bills/customer/{id}")
     public List<Bill> getAllBills(@PathVariable Long id){
         List<Bill> bills = billRepository.findByCustomerId(id);
         for(Bill b: bills){
