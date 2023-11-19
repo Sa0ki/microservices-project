@@ -1,0 +1,30 @@
+name: CI/CD Backend
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+
+    - name: Build with Maven
+      run: cd backend && mvn -B clean package
+
+    - name: Publish to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password:  ${{ secrets.DOCKER_PASSWORD }}
+        repository: sa0ki/microservices-project
+        tags: latest
