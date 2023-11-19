@@ -24,6 +24,6 @@ jobs:
 
       - name: Build the application
         run: |
-          mvn clean
+          mvn clean backend-project/microservices/
           mvn -B package --file backend-project/microservices/pom.xml
           
