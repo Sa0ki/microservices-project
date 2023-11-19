@@ -22,6 +22,7 @@ jobs:
       - name: Unit tests
         run: |
           mvn -B test --file backend-project/microservices/pom.xml
+          mvn -B test --file backend-project/microservices/eureka-discovery-service/pom.xml
           mvn -B test --file backend-project/microservices/config-service/pom.xml
           mvn -B test --file backend-project/microservices/gateway/pom.xml
           mvn -B test --file backend-project/microservices/customer-service/pom.xml
