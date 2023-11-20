@@ -72,6 +72,6 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/microservices-project:eureka
+          tags: ${{ secrets.DOCKER_USERNAME }}/microservices-project:config
 
           
